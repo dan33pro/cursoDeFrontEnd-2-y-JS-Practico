@@ -11,20 +11,25 @@
 }
 
 body {
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
-    margin: 0;
+    margin: 60px 0 0;
     height: 100vh;
     font-family: 'Quicksand', sans-serif;
 }
 
 nav {
+    position: fixed;
+    top: 0;
     display: flex;
+    width: calc(100vw - 48px);
     height: 60px;
     padding: 0 24px;
     justify-content: space-between;
     border-bottom: 1px solid var(--very-light-pink);
     background: var(--white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.466);
+    z-index: 2;
 }
 
 /* NavBar */
@@ -32,10 +37,14 @@ nav {
     display: flex;
 }
 
+.navbar-right {
+    margin-right: 10px;
+}
+
 .navbar-left,
 .navbar-right {
     background: var(--white);
-    z-index: 2;
+    z-index: 3;
 }
 
 .menu {
@@ -102,20 +111,21 @@ nav {
 /* DesktopMenu */
 
 .desktop-menu-animation {
-    transform: translateY(162px);
+    transform: translateY(166px);
 }
 
 .desktop-menu {
     position: absolute;
-    top: -102px;
-    right: 56px;
+    top: -106px;
+    right: 52px;
     width: 100px;
     height: auto;
     background: var(--white);
     border: 1px solid var(--very-light-pink);
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.466);
     border-radius: 6px;
     padding: 20px 20px 0 20px;
-    z-index: 1;
+    z-index: 2;
     will-change: transform;
     transition: transform 250ms;
 }
@@ -154,17 +164,18 @@ nav {
 
 /*Mobile Menu*/
 .mobile-menu-animation {
-    transform: translateX(188px);
+    transform: translateX(190px);
 }
 
 .mobile-menu {
     top: 61px;
-    left: -188px;
+    left: -190px;
     border-right: 1px solid var(--very-light-pink);
     background: var(--white);
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.466);
     position: absolute;
     display: none;
-    height: 100vh;
+    height: calc(100vh - 60px);
     padding: 0 24px 0 24px;
     will-change: transform;
     transition: transform 800ms;
@@ -211,23 +222,25 @@ nav {
 
 /*Aside (product detail carrito)*/
 .product-detail-animation {
-    transform: translateX(-360px);
+    transform: translateX(-366px);
 }
 
 .product-detail {
+    position: fixed;
     width: 360px;
     height: calc(100vh - 60px);
     padding: 0 24px 24px 24px;
-    position: absolute;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    right: -360px;
+    right: -366px;
     background: var(--white);
     border-left: 1px solid var(--very-light-pink);
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.466);
     will-change: transform;
     transition: transform 600ms;
+    z-index: 1;
 }       
 .primary-button {
     background-color: var(--hospital-green);
@@ -306,6 +319,61 @@ nav {
     cursor: pointer;
 }
 
+/*Main container*/
+.cards-container {
+    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 240px);
+    gap: 26px;
+    place-content: center;
+}
+.product-card {
+    width: 240px;
+}
+.product-card img{
+    width: 240px;
+    height: 240px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+.product-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+.product-info figure{
+    margin: 0;
+}
+.product-info figure img{
+    width: 35px;
+    height: 35px;
+}
+.product-info div p:nth-child(1){
+    font-weight: bold;
+    font-size: var(--md);
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+.product-info div p:nth-child(2){
+    font-size: var(--sm);
+    margin-top: 0;
+    margin-bottom: 0;
+    color: var(--very-light-pink);
+}
+@media (max-width: 640px) {
+    .cards-container {
+        grid-template-columns: repeat(auto-fill, 140px);
+    }
+    .product-card {
+        width: 140px;
+    }
+    .product-card img{
+        width: 140px;
+        height: 140px;
+    }
+}
+
 @media (max-width: 760px) {
     .menu {
         display: block;
@@ -330,12 +398,12 @@ nav {
     }
 
     .product-detail {
-        right: -100%;
+        right: -101%;
         width: 100%;
     }
 
     .product-detail-animation {
-        transform: translateX(-100%);
+        transform: translateX(-101%);
     }
 
     .product-detail {
